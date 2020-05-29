@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">AboutMe</string>
+    <string name="name">Logan</string>
+    <string name="person_icon">Person icon</string>
+    <string name="bio">Hi, my name is Logan.
+        \n\nI love fish.
+        \n\nThe kind that is <i>alive</i> and swims around in an aquarium or river, or a lake, and definitely the ocean.
+        \nFun fact is that I have several aquariums and also a river.
+        \n\nI like eating fish, too. Raw fish. Grilled fish. Smoked fish. Poached fish - not so much.
+        \nAnd sometimes I even go fishing.
+        \nAnd even less sometimes, <b>I actually catch something</b>.
+        \n\nOnce, when I was camping in Canada, and very hungry, I even caught a large salmon with my hands.
+        \n\nI\'ll be happy to teach you how to make your own aquarium.
+        \nYou should ask someone else about fishing, though.\n\n
+    </string>
+    <string name="bio_image">Bio image</string>
+</resources>
