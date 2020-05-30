@@ -14,4 +14,6 @@
         \nYou should ask someone else about fishing, though.\n\n
     </string>
     <string name="bio_image">Bio image</string>
+    <string name="nickname_hint">What is your Nickname?</string>
+    <string name="done_button_text">Done</string>
 </resources>
