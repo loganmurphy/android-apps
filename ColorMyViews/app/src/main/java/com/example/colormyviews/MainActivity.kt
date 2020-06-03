@@ -1,24 +1,18 @@
 package com.example.colormyviews
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import com.example.colormyviews.R.id.box_four
 import kotlin.random.Random
 
 
 class MainActivity : AppCompatActivity() {
-    val images: List<Int> = listOf(
-        R.drawable.image1_foreground,
-        R.drawable.image2_foreground,
-        R.drawable.image3_foreground,
-        R.drawable.image4_foreground,
-        R.drawable.image5_foreground
-    )
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,21 +28,30 @@ class MainActivity : AppCompatActivity() {
 
         val rootConstraintLayout = findViewById<View>(R.id.constraint_layout)
 
+        val redButton = findViewById<Button>(R.id.red_button)
+        val yellowButton = findViewById<Button>(R.id.yellow_button)
+        val greenButton = findViewById<Button>(R.id.green_button)
+
         val clickableViews: List<View> = listOf(
-            boxOne, boxTwo, boxThree, boxFour, boxFive, rootConstraintLayout
+            boxOne, boxTwo, boxThree, boxFour, boxFive, rootConstraintLayout,
+            redButton, yellowButton, greenButton
         )
 
         for (view in clickableViews) {
             view.setOnClickListener {
-                val viewColor: Int? = if(it.background !== null) (it.background as ColorDrawable).color else null
+                val isButton = it::class.qualifiedName.toString().contains("Button", false)
 
-                when(viewColor) {
-                    -1 -> makeColored(it)
-                    else -> removeColor(it)
+                var viewColor: Int?
+                if(isButton) {
+                    viewColor = Random.nextInt(5)
+                    makeButtonsColored(it, viewColor)
+                } else {
+                   viewColor = if(it.background !== null) (it.background as ColorDrawable).color else null
+                    when(viewColor) {
+                        -1 -> makeColored(it)
+                        else -> removeColor(it)
+                    }
                 }
-
-
-//                addImage(it)
             }
         }
     }
@@ -58,14 +61,17 @@ class MainActivity : AppCompatActivity() {
         R.id.box_one -> view.setBackgroundColor(Color.DKGRAY)
         R.id.box_two -> view.setBackgroundColor(Color.GRAY)
         R.id.box_three -> view.setBackgroundColor(Color.BLUE)
-        box_four -> view.setBackgroundColor(Color.MAGENTA)
+        R.id.box_four -> view.setBackgroundColor(Color.MAGENTA)
         R.id.box_five -> view.setBackgroundColor(Color.BLUE)
         else -> view.setBackgroundColor(Color.LTGRAY)
     }
 
+    private fun makeButtonsColored(view: View, id: Int) = when(id) {
+        1 -> view.setBackgroundResource(R.color.my_red)
+        2 -> view.setBackgroundResource(R.color.my_green)
+        3 -> view.setBackgroundResource(R.color.my_yellow)
+        else -> view.setBackgroundResource(R.color.colorPrimary)
+    }
+
     private fun removeColor(view: View) = view.setBackgroundColor(Color.WHITE)
-
-    private fun addImage(view: View) { view.setBackgroundResource(getRandomImage())}
-
-    private fun getRandomImage() = images[Random.nextInt(4)]
 }
